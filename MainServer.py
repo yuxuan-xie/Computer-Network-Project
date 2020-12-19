@@ -54,9 +54,12 @@ class mainServer(Obj):
         for each in self.adminDic[self.choose]['Usr']:
             if each in self.onlineUser:
                 UDPMessage.sendUDPMessage(self.listenSocket, self.onlineUser[each], message)
+        # 更新预约用户信息
+        self.adminDic[self.choose]['Usr'].clear()
         message = self.generateLoginSuccessMessage()
         for each in self.onlineUser:
             UDPMessage.sendUDPMessage(self.listenSocket, self.onlineUser[each], message)
+
         self.updateWindow()
 
     def handleStart(self):
